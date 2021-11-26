@@ -9,6 +9,8 @@ public class a {
                 continue;
             }
             System.out.println(i);
+            System.out.println("b");
         }
     }
+
 }
