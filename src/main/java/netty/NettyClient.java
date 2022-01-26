@@ -61,5 +61,6 @@ public class NettyClient {
 
     public static void main(String[] args) throws InterruptedException {
         new NettyClient(10086, "localhost");
+        String interesting = "测试一个新的东西哦";
     }
 }
