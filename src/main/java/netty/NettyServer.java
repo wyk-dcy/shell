@@ -55,11 +55,15 @@ public class NettyServer {
         } finally {
             boss.shutdownGracefully();
             worker.shutdownGracefully();
+            String i= "新的测试哦";
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
         new NettyServer(10086);
         String i= "新的测试哦";
+
+        String c= "wuyongkang";
+        String d= "dochunyazn";
     }
 }
