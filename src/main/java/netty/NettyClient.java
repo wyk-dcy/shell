@@ -9,6 +9,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author wuyongkang
  * @date 2022年01月08日 17:27
@@ -62,5 +65,9 @@ public class NettyClient {
     public static void main(String[] args) throws InterruptedException {
         new NettyClient(10086, "localhost");
         String interesting = "测试一个新的东西哦";
+        String r = "我有来了";
+        List a = new LinkedList();
+        a.size();
+        
     }
 }
