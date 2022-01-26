@@ -52,6 +52,8 @@ public class NettyClient {
             ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
             if (channelFuture.isSuccess()) {
                 System.err.println("连接服务器成功");
+                String demo = new String("这是什么贵哦东西");
+                String d = new String("这是什么贵哦东西");
             }
             channelFuture.channel().closeFuture().sync();
         } finally {
@@ -62,5 +64,6 @@ public class NettyClient {
     public static void main(String[] args) throws InterruptedException {
         new NettyClient(10086, "localhost");
         String interesting = "测试一个新的东西哦";
+        String demo = new String("这是什么贵哦东西");
     }
 }
