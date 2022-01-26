@@ -55,6 +55,7 @@ public class NettyServer {
         } finally {
             boss.shutdownGracefully();
             worker.shutdownGracefully();
+            String i= "新的测试哦";
         }
     }
 
@@ -65,5 +66,9 @@ public class NettyServer {
 
         String c = "merge";
         String d = "merge";
+        String gg= "新的测试哦";
+
+        String cg= "wuyongkang";
+        String dg= "dochunyazn";
     }
 }
