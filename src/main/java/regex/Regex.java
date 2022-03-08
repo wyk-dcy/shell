@@ -14,7 +14,6 @@ public class Regex {
         if (contains) {
             str = str.replace("-", "");
         }
-        str = str.replaceAll("^0+(.*?([.].*?)?)0+$", "$1");
         if (str.indexOf(".") == 0) {
             str = 0 + str;
         }
@@ -25,8 +24,11 @@ public class Regex {
         NumberFormat nf = NumberFormat.getNumberInstance();
         nf.setMaximumFractionDigits(2);
         nf.setRoundingMode(RoundingMode.HALF_UP);
-        nf.setGroupingUsed(false);
         System.out.println(nf.format(Double.parseDouble(str)));
 
+    }
+
+    private void delete() {
+        String a = "l";
     }
 }
