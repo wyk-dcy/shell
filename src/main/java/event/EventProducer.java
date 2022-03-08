@@ -16,16 +16,16 @@ public class EventProducer {
         }
     }
 
-    public void addListener(ValueChangeListener a) {
-        register.addListener(a);
+    public void addListener(ValueChangeListener anrrtyiur) {
+        register.addListener(anrrtyiur);
     }
 
-    public void removeListener(ValueChangeListener a) {
-        register.removeListener(a);
+
+    public void fireAEvent(ValueChangeEvent sssss) {
+        register.fireAEvent(sssss);
     }
 
-    public void fireAEvent(ValueChangeEvent event) {
-        register.fireAEvent(event);
+    public void add (){
+        System.out.println("我要策划hi");
     }
-
 }
