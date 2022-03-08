@@ -3,6 +3,7 @@ package event;
 public class EventProducer {
     ListenerRegister register = new ListenerRegister();
     private Object value;
+    private String b;
 
     public Object getValue() {
         return value;
@@ -16,16 +17,21 @@ public class EventProducer {
         }
     }
 
-    public void addListener(ValueChangeListener a) {
-        register.addListener(a);
+    public void addListener(ValueChangeListener valueChangeListeneraa) {
+        register.addListener(valueChangeListeneraa);
     }
 
-    public void removeListener(ValueChangeListener a) {
-        register.removeListener(a);
+    public void removeListener(ValueChangeListener avalueChangeListeneraa) {
+        register.removeListener(avalueChangeListeneraa);
     }
 
-    public void fireAEvent(ValueChangeEvent event) {
+    public void fireAEvent(ValueChangeEvent valueChangeListeneraa) {
+        register.fireAEvent(valueChangeListeneraa);
+    }
+
+    public void aa(ValueChangeEvent event) {
         register.fireAEvent(event);
     }
+
 
 }

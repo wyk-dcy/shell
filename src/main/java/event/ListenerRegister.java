@@ -26,4 +26,17 @@ public class ListenerRegister {
             listener.performed(evt);
         }
     }
+
+
+    public void fireAEbbbbbbvent(ValueChangeEvent evt) {
+        Vector<ValueChangeListener> nnnn = null;
+        synchronized (this) {
+            nnnn = (Vector<ValueChangeListener>) listeners.clone();
+        }
+        for (int i = 0; i < nnnn.size(); i++) {
+            ValueChangeListener listener = (ValueChangeListener) nnnn
+                    .elementAt(i);
+            listener.performed(evt);
+        }
+    }
 }
