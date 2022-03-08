@@ -1,10 +1,11 @@
 package event;
 
 public class EventProducer {
-    ListenerRegister register = new ListenerRegister();
+    ListenerRegister register = new LisaddtenerRegister();
     private Object value;
     private String b;
     private String c;
+    private String e;
 
 
     public Object getValue() {
