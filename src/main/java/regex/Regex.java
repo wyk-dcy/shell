@@ -9,12 +9,13 @@ import java.text.NumberFormat;
  */
 public class Regex {
     public static void main(String[] args) {
+        String b = "c";
         String str = "1231";
         boolean contains = str.contains("-");
         if (contains) {
-            str = str.replace("-", "");
+            b = b.replace("-", "");
         }
-        str = str.replaceAll("^0+(.*?([.].*?)?)0+$", "$1");
+        b = str.replaceAll("^0+(.*?([.].*?)?)0+$", "$1");
         if (str.indexOf(".") == 0) {
             str = 0 + str;
         }
@@ -23,10 +24,15 @@ public class Regex {
         }
 
         NumberFormat nf = NumberFormat.getNumberInstance();
+        NumberFormat nf2 = NumberFormat.getNumberInstance();
         nf.setMaximumFractionDigits(2);
         nf.setRoundingMode(RoundingMode.HALF_UP);
         nf.setGroupingUsed(false);
+        NumberFormat nf3 = NumberFormat.getNumberInstance();
         System.out.println(nf.format(Double.parseDouble(str)));
+    }
+    private void add(){
+        String k = "哪门子爱好检索";
 
     }
 }
