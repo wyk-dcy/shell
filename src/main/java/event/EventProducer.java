@@ -4,6 +4,8 @@ public class EventProducer {
     ListenerRegister register = new ListenerRegister();
     private Object value;
     private String b;
+    private String c;
+
 
     public Object getValue() {
         return value;
