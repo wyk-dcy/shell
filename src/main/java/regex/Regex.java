@@ -22,7 +22,7 @@ public class Regex {
         if (contains) {
             str = "-" + str;
         }
-
+        System.out.println("xix bufg -wykgit2");
         NumberFormat nf = NumberFormat.getNumberInstance();
         NumberFormat nf2 = NumberFormat.getNumberInstance();
         nf.setMaximumFractionDigits(2);
