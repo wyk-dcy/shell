@@ -34,5 +34,7 @@ public class Regex {
     private void add(){
         String k = "哪门子爱好检索";
 
+        System.out.println("git1-fun");
+
     }
 }
