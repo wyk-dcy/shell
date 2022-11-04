@@ -21,7 +21,7 @@ public class Regex {
         if (contains) {
             str = "-" + str;
         }
-
+        System.out.println("xix bufg -wykgit2");
         NumberFormat nf = NumberFormat.getNumberInstance();
         nf.setMaximumFractionDigits(2);
         nf.setRoundingMode(RoundingMode.HALF_UP);
