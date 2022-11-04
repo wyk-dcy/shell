@@ -28,5 +28,7 @@ public class Regex {
         nf.setGroupingUsed(false);
         System.out.println(nf.format(Double.parseDouble(str)));
 
+        System.out.println("git1-fun");
+
     }
 }
