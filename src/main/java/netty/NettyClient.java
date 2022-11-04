@@ -55,6 +55,8 @@ public class NettyClient {
             ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
             if (channelFuture.isSuccess()) {
                 System.err.println("连接服务器成功");
+                String demo = new String("这是什么贵哦东西");
+                String d = new String("这是什么贵哦东西");
             }
             channelFuture.channel().closeFuture().sync();
         } finally {
@@ -68,6 +70,6 @@ public class NettyClient {
         String r = "我有来了";
         List a = new LinkedList();
         a.size();
-        
+
     }
 }
