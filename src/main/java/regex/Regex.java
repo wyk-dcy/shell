@@ -1,7 +1,5 @@
 package regex;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
@@ -10,13 +8,15 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  */
 public class Regex extends AbstractQueuedSynchronizer {
     public static void main(String[] args) {
-        JLabel jlabel = new JLabel();
-        jlabel.setSize(new Dimension(60, 48));
-        String str = "sssdadsadaf";
-        System.out.println(str.substring(8));
-
-    }
-    private void add(){
-
+        boolean A = false;
+        System.out.println(A |= false);
+        System.out.println(A);
+        System.out.println(A |= true);
+        System.out.println(A);
+        boolean B = true;
+        System.out.println(B |= false);
+        System.out.println(B);
+        System.out.println(B |= true);
+        System.out.println(B);
     }
 }
