@@ -61,14 +61,6 @@ public class NettyServer {
 
     public static void main(String[] args) throws InterruptedException {
         new NettyServer(10086);
-        String i = "add";
-        String b = "merge";
 
-        String c = "merge";
-        String d = "merge";
-        String gg= "新的测试哦";
-
-        String cg= "wuyongkang";
-        String dg= "dochunyazn";
     }
 }
