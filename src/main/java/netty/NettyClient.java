@@ -1,22 +1,29 @@
 package netty;
 
+import concurrent.NamedThreadFactory;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.timeout.IdleStateHandler;
+import netty.elite.RPCMessageDataFrameProcessor;
+import netty.elite.RobotDataFrameDecoder;
+import netty.elite.RobotDataFrameHandler;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author wuyongkang
  * @date 2022年01月08日 17:27
  */
 public class NettyClient {
+    private static final int CONNECT_TIMEOUT_MILLIS = 200;
+    private boolean tryingToConnect = false;
 
     /*
      * 服务器端口号
@@ -27,47 +34,52 @@ public class NettyClient {
      * 服务器IP
      */
     private String host;
+    private EventLoopGroup workerGroup;
+    protected Bootstrap bootstrap;
 
-    public NettyClient(int port, String host) throws InterruptedException {
+    private RPCMessageDataFrameProcessor robotDataFrameProcessor;
+
+    public NettyClient(int port, String host, RPCMessageDataFrameProcessor robotDataFrameProcessor) throws InterruptedException {
         this.port = port;
         this.host = host;
+        this.robotDataFrameProcessor = robotDataFrameProcessor;
         start();
     }
 
-    private void start() throws InterruptedException {
-
-        EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
+    private boolean start() {
 
         try {
+            workerGroup = new NioEventLoopGroup(new NamedThreadFactory("Primary-Net-Controller"));
+            bootstrap = new Bootstrap()
+                    .group(workerGroup)
+                    .channel(NioSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, CONNECT_TIMEOUT_MILLIS)
+                    .option(ChannelOption.SO_KEEPALIVE, true)
+                    .option(ChannelOption.TCP_NODELAY, true)
+                    .handler(new RobotDataFrameHandler(robotDataFrameProcessor))
+                    .handler(new RobotDataFrameDecoder())
+                    .handler(new IdleStateHandler(4000, 0, 0, TimeUnit.MILLISECONDS));
 
-            Bootstrap bootstrap = new Bootstrap();
-            bootstrap.channel(NioSocketChannel.class);
-            bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
-            bootstrap.group(eventLoopGroup);
-            bootstrap.remoteAddress(host, port);
-            bootstrap.handler(new ChannelInitializer<SocketChannel>() {
-                @Override
-                protected void initChannel(SocketChannel socketChannel)
-                        throws Exception {
-                    socketChannel.pipeline().addLast(new NettyClientHandler());
-                }
-            });
-            ChannelFuture channelFuture = bootstrap.connect(host, port).sync();
-            if (channelFuture.isSuccess()) {
-                System.err.println("连接服务器成功");
-            }
-            channelFuture.channel().closeFuture().sync();
-        } finally {
-            eventLoopGroup.shutdownGracefully();
+            doConnect();
+
+            return true;
+        } catch (Exception ignored) {
         }
+        return false;
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        new NettyClient(10086, "localhost");
-        String interesting = "测试一个新的东西哦";
-        String r = "我有来了";
-        List a = new LinkedList();
-        a.size();
-        
+    private void doConnect() {
+        ChannelFuture future = bootstrap.connect(host, port);
+        future.addListener((ChannelFutureListener) futureListener -> {
+            if (futureListener.isSuccess()) {
+                tryingToConnect = false;
+            } else {
+                if (!tryingToConnect) {
+                    tryingToConnect = true;
+                }
+                futureListener.channel().eventLoop().schedule(this::doConnect, 2000, TimeUnit.MILLISECONDS);
+            }
+        });
     }
 }

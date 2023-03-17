@@ -1,13 +1,12 @@
 package regex;
 
-import java.math.RoundingMode;
-import java.text.NumberFormat;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
  * @author wuyongkang
  * @date 2022年01月20日 9:44
  */
-public class Regex {
+public class Regex extends AbstractQueuedSynchronizer {
     public static void main(String[] args) {
         String str = "1231";
         boolean contains = str.contains("-");
