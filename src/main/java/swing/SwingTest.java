@@ -25,7 +25,7 @@ public class SwingTest {
                             }
                         }
                     }
-                });
+                });cdvdv
                 thread.start();
             }
         });
